@@ -26,9 +26,32 @@ Usage
       -s, --sensitivity=?      set sensitivity, range 1-255
       -S, --press-speed=?      set press-speed, range 1-255
       -p, --press-to-select    enable press-to-select
+      -R, --press-right        select with right button instead of left
       -D, --dragging           enable dragging
       -r, --release-to-select  enable release-to-select
-      -R, --select-with-right  select with right button instead of left
+
+
+### Sensitivity
+The higher the sensitivity, the less force you need to move the mouse cursor.
+
+### Press to select
+If this is enabled, pressing down the trackpoint generates a click.
+
+### Press-speed
+This setting determines how fast you have to press to generate a click if
+*Press to select* is enabled.
+
+### Dragging
+By enabling this, you can not only click by pressing down the trackpoint, but
+also drag. This depends on *Press to select* being enabled.
+
+### Press right
+This changes to *Press to select* feature to generate right-button clicks
+instead of left-button ones.
+
+### Release to select
+This inappropriately named option (the name was adopted from the Windows driver)
+enables double-clicking when using *Press to select*.
 
 
 Building and Installing

@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
 	int press_to_select = 0;
 	int dragging = 0;
 	int release_to_select = 0;
-	int select_right = 0;
+	int press_right = 0;
 	int sensitivity = 128;
 	int press_speed = 0x38;
 	int show_help = 0;
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
 		{ "press-to-select", no_argument, 0, 0},
 		{ "dragging", no_argument, 0, 0},
 		{ "release-to-select", no_argument, 0, 0},
-		{ "select-with-right", no_argument, 0, 0},
+		{ "press-right", no_argument, 0, 0},
 		{ "version", no_argument, 0, 0},
 		{ 0 }	
 	};
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
 			case 4: press_to_select = 1; break;
 			case 5: dragging = 1; break;
 			case 6: release_to_select = 1; break;
-			case 7: select_right = 1; break;
+			case 7: press_right = 1; break;
 			case 8: show_version = 1; break;
 			}
 			break;
@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
 			break;
 
 		case 'R':
-			select_right = 1;
+			press_right = 1;
 			break;
 
 		case 'v':
@@ -171,9 +171,9 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "  -s, --sensitivity=?      set sensitivity, range 1-255\n");
 		fprintf(stderr, "  -S, --press-speed=?      set press-speed, range 1-255\n");
 		fprintf(stderr, "  -p, --press-to-select    enable press-to-select\n");
+		fprintf(stderr, "  -R, --press-right        generate right click instead of left\n");
 		fprintf(stderr, "  -D, --dragging           enable dragging\n");
 		fprintf(stderr, "  -r, --release-to-select  enable release-to-select\n");
-		fprintf(stderr, "  -R, --select-with-right  select with right button instead of left\n");
 		fprintf(stderr, "\n");
 		exit(0);
 	}
@@ -204,7 +204,7 @@ int main(int argc, char* argv[]) {
 	buf[1]  = press_to_select   ? 0x01 : 0x02;
 	buf[1] |= dragging          ? 0x04 : 0x08;
 	buf[1] |= release_to_select ? 0x10 : 0x20;
-	buf[1] |= select_right      ? 0x80 : 0x40;
+	buf[1] |= press_right       ? 0x80 : 0x40;
 	buf[2] = 0x03;
 	buf[3] = sensitivity;
 	buf[4] = press_speed;
@@ -212,11 +212,14 @@ int main(int argc, char* argv[]) {
 	if (verbosity > 0) {
 #define bool2str(x) ((x)?"True":"False")
 		fprintf(stderr, "Setting values:\n");
-		fprintf(stderr, "sensitivity:          %d\n", sensitivity);
-		fprintf(stderr, "press-to-select:      %s\n", bool2str(press_to_select));
-		fprintf(stderr, "press-speed:          %d\n", press_speed);
-		fprintf(stderr, "dragging              %s\n", bool2str(dragging));
-		fprintf(stderr, "select-with-right     %s\n", bool2str(select_right));
+		fprintf(stderr, "-----------------------------\n");
+		fprintf(stderr, "sensitivity:            %d\n", sensitivity);
+		fprintf(stderr, "press-to-select:        %s\n", bool2str(press_to_select));
+		fprintf(stderr, "    press-speed:        %d\n", press_speed);
+		fprintf(stderr, "    press-right:        %s\n", bool2str(press_right));
+		fprintf(stderr, "    dragging:           %s\n", bool2str(dragging));
+		fprintf(stderr, "    release-to-select:  %s\n", bool2str(release_to_select));
+		fprintf(stderr, "-----------------------------\n");
 #undef bool2str
 	}
 
