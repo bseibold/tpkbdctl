@@ -185,6 +185,7 @@ int main(int argc, char* argv[]) {
 
 	if (press_speed < 1 || press_speed > 255) {
 		fprintf(stderr, "ERROR: press-speed not within valid range 1-255\n");
+		exit(1);
 	}
 
 	if (device) {
@@ -200,7 +201,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	buf[0] = 4;
-	buf[1] = (press_to_select+1) | ((dragging+1)<<2) | ((release_to_select+1)<<4) | ((select_right+1)<<6);
+	buf[1]  = press_to_select   ? 0x01 : 0x02;
+	buf[1] |= dragging          ? 0x04 : 0x08;
+	buf[1] |= release_to_select ? 0x10 : 0x20;
+	buf[1] |= select_right      ? 0x80 : 0x40;
 	buf[2] = 0x03;
 	buf[3] = sensitivity;
 	buf[4] = press_speed;
@@ -209,8 +213,10 @@ int main(int argc, char* argv[]) {
 #define bool2str(x) ((x)?"True":"False")
 		fprintf(stderr, "Setting values:\n");
 		fprintf(stderr, "sensitivity:          %d\n", sensitivity);
-		fprintf(stderr, "press-speed:          %d\n", press_speed);
 		fprintf(stderr, "press-to-select:      %s\n", bool2str(press_to_select));
+		fprintf(stderr, "press-speed:          %d\n", press_speed);
+		fprintf(stderr, "dragging              %s\n", bool2str(dragging));
+		fprintf(stderr, "select-with-right     %s\n", bool2str(select_right));
 #undef bool2str
 	}
 
