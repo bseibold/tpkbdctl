@@ -14,7 +14,7 @@ This tool uses the `hidraw` driver and needs at least *Linux 2.6.30* in order
 to work. It can only write settings, not read them, so you have to set
 everything at the same same.
 
-On some systems the hidraw devide files are readable only by root, so you
+On most systems the hidraw device files are readable only by root, so you
 might need to run this as root.
 
 Usage
@@ -53,17 +53,49 @@ This changes to *Press to select* feature to generate right-button clicks
 instead of left-button ones.
 
 ### Release to select
-This inappropriately named option (the name was adopted from the Windows driver)
+This inaptly named option (the name was adopted from the Windows driver)
 enables double-clicking when using *Press to select*.
 
 
 Building and Installing
 =======================
 
+Debian/Ubuntu
+-------------
+
+    fakeroot debian/rules binary
+    sudo dpkg -i ../tpkbdctl_*.deb
+
+Others
+------
+
     make
     sudo make install
 
-You need Linux headers installed, minimum version 2.6.30.
+You need Linux headers installed, minimum version 2.6.39.
+
+Permanent Setup
+===============
+
+Debian/Ubuntu
+-------------
+
+Just customize `/etc/default/tpkbdctl`.
+
+Others
+------
+
+To have your perferred configuration set automatically, a udev rule can be
+used. Place the following code in  `/etc/udev/rules.d/10-tpkbdctl.rules`.
+
+    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="tpkbdctl_runner"
+
+Customize this according to you needs and save it as `/etc/udev/tpkbdctl_runner`.
+Don't forget to make it executable.
+
+    #!/bin/sh
+    
+    /usr/bin/tpkbdctl -d ${DEVNAME} -s 192 # your settings here
 
 See also
 ========
