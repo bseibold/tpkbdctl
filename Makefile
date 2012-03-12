@@ -11,7 +11,7 @@ clean:
 	rm -f tpkbdctl
 
 install: all
-	mkdir -p $(DESTDIR)usr/bin
-	cp tpkbdctl $(DESTDIR)usr/bin/
+	mkdir -p $(DESTDIR)/usr/bin
+	cp tpkbdctl $(DESTDIR)/usr/bin/
 
 .PHONY: clean install

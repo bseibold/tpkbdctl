@@ -194,9 +194,8 @@ int main(int argc, char* argv[]) {
 		fd = find_device();
 	}
 
-	if (fd<0) {
-		perror("No device found");
-		//fprintf(stderr, "No device found.\n");
+	if (fd<=0) {
+		fprintf(stderr, "No device found\n");
 		exit(1);
 	}
 
