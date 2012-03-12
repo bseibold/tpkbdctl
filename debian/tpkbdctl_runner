@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. /etc/default/tpkbdctl
+
+/usr/bin/tpkbdctl -d ${DEVNAME} ${TPKBDCTL_OPTIONS}

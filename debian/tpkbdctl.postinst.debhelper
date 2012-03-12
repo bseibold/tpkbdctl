@@ -1,0 +1,11 @@
+# Automatically added by dh_installudev
+if [ "$1" = configure ]; then
+	if [ -e "/etc/udev/rules.d/z60_tpkbdctl.rules" ]; then
+		echo "Preserving user changes to /etc/udev/rules.d/60-tpkbdctl.rules ..."
+		if [ -e "/etc/udev/rules.d/60-tpkbdctl.rules" ]; then
+			mv -f "/etc/udev/rules.d/60-tpkbdctl.rules" "/etc/udev/rules.d/60-tpkbdctl.rules.dpkg-new"
+		fi
+		mv -f "/etc/udev/rules.d/z60_tpkbdctl.rules" "/etc/udev/rules.d/60-tpkbdctl.rules"
+	fi
+fi
+# End automatically added section
