@@ -14,6 +14,9 @@ This tool uses the `hidraw` driver and needs at least *Linux 2.6.30* in order
 to work. It can only write settings, not read them, so you have to set
 everything at the same same.
 
+On some systems the hidraw devide files are readable only by root, so you
+might need to run this as root.
+
 Usage
 =====
 

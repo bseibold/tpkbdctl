@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -32,8 +33,11 @@ int find_device() {
 	for (i=0; i<255; i++) {
 		snprintf(name, 255, "/dev/hidraw%d", i);
 		fd = open(name, O_RDWR|O_NONBLOCK);
-		if (!fd)
+		if (fd == -1) {
+			if (errno == EACCES)
+				fprintf(stderr, "Permission denied on %s\n", name);
 			continue;
+		}
 
 		ret = ioctl(fd, HIDIOCGRAWINFO, &devinfo);
 		if (ret) {
