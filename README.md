@@ -88,7 +88,7 @@ Others
 To have your perferred configuration set automatically, a udev rule can be
 used. Place the following code in  `/etc/udev/rules.d/10-tpkbdctl.rules`.
 
-    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="tpkbdctl_runner"
+    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
 
 Customize this according to you needs and save it as `/etc/udev/tpkbdctl_runner`.
 Don't forget to make it executable.
