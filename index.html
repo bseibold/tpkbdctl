@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Tpkbdctl by bseibold</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Tpkbdctl</h1>
+        <h2>Thinkpad USB Keyboard Control Tool</h2>
+        <a href="https://github.com/bseibold/tpkbdctl" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>What is this?</h1>
+
+<p>It's a tool that can be used to control features of the
+"Lenovo ThinkPad USB Keyboard with TrackPoint".
+The official User Guide can be found <a href="http://download.lenovo.com/ibmdl/pub/pc/pccbbs/options_iso/45k1918_ug.pdf" title="User Guide">here</a> (PDF).</p>
+
+<h1>Requirements and Limitations</h1>
+
+<p>This tool uses the <code>hidraw</code> driver and needs at least <em>Linux 2.6.30</em> in order
+to work. It can only write settings, not read them, so you have to set
+everything at the same same.</p>
+
+<p>On most systems the hidraw device files are readable only by root, so you
+might need to run this as root.</p>
+
+<h1>Usage</h1>
+
+<pre><code>Usage: tpkbdctl [OPTIONS]
+
+  -h, --help               show this
+  -V, --version            show version
+  -d, --device=?           set device. Autodiscovered if unset
+  -v                       increase verbosity
+  -s, --sensitivity=?      set sensitivity, range 1-255
+  -S, --press-speed=?      set press-speed, range 1-255
+  -p, --press-to-select    enable press-to-select
+  -R, --press-right        select with right button instead of left
+  -D, --dragging           enable dragging
+  -r, --release-to-select  enable release-to-select
+</code></pre>
+
+<h3>Sensitivity</h3>
+
+<p>The higher the sensitivity, the less force you need to move the mouse cursor.</p>
+
+<h3>Press to select</h3>
+
+<p>If this is enabled, pressing down the trackpoint generates a click.</p>
+
+<h3>Press-speed</h3>
+
+<p>This setting determines how fast you have to press to generate a click if
+<em>Press to select</em> is enabled.</p>
+
+<h3>Dragging</h3>
+
+<p>By enabling this, you can not only click by pressing down the trackpoint, but
+also drag. This depends on <em>Press to select</em> being enabled.</p>
+
+<h3>Press right</h3>
+
+<p>This changes to <em>Press to select</em> feature to generate right-button clicks
+instead of left-button ones.</p>
+
+<h3>Release to select</h3>
+
+<p>This inaptly named option (the name was adopted from the Windows driver)
+enables double-clicking when using <em>Press to select</em>.</p>
+
+<h1>Building and Installing</h1>
+
+<h2>Debian/Ubuntu</h2>
+
+<pre><code>fakeroot debian/rules binary
+sudo dpkg -i ../tpkbdctl_*.deb
+</code></pre>
+
+<h2>Others</h2>
+
+<pre><code>make
+sudo make install
+</code></pre>
+
+<p>You need Linux headers installed, minimum version 2.6.39.</p>
+
+<h1>Permanent Setup</h1>
+
+<h2>Debian/Ubuntu</h2>
+
+<p>Just customize <code>/etc/default/tpkbdctl</code>.</p>
+
+<h2>Others</h2>
+
+<p>To have your perferred configuration set automatically, a udev rule can be
+used. Place the following code in  <code>/etc/udev/rules.d/10-tpkbdctl.rules</code>.</p>
+
+<pre><code>SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
+</code></pre>
+
+<p>Customize this according to you needs and save it as <code>/etc/udev/tpkbdctl_runner</code>.
+Don't forget to make it executable.</p>
+
+<pre><code>#!/bin/sh
+
+/usr/bin/tpkbdctl -d ${DEVNAME} -s 192 # your settings here
+</code></pre>
+
+<h1>See also</h1>
+
+<p>There's a <a href="https://github.com/bseibold/linux/tree/tpkbd-unstable" title="Kernel patch">kernel patch</a> that provides more functionality than this tool.
+Be aware though, the unstable branch will be rebased from time to time.</p>
+
+<h1>License</h1>
+
+<p>This tool is licensed under the GNU GPL v2.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/bseibold/tpkbdctl/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bseibold/tpkbdctl/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/bseibold/tpkbdctl"></a> is maintained by <a href="https://github.com/bseibold">bseibold</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
