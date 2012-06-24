@@ -36,7 +36,7 @@ The official User Guide can be found <a href="http://download.lenovo.com/ibmdl/p
 
 <h1>Requirements and Limitations</h1>
 
-<p>This tool uses the <code>hidraw</code> driver and needs at least <em>Linux 2.6.30</em> in order
+<p>This tool uses the <code>hidraw</code> driver and needs at least <em>Linux 2.6.39</em> in order
 to work. It can only write settings, not read them, so you have to set
 everything at the same same.</p>
 
@@ -111,7 +111,7 @@ sudo make install
 
 <h2>Others</h2>
 
-<p>To have your perferred configuration set automatically, a udev rule can be
+<p>To have your preferred configuration set automatically, a udev rule can be
 used. Place the following code in  <code>/etc/udev/rules.d/10-tpkbdctl.rules</code>.</p>
 
 <pre><code>SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
