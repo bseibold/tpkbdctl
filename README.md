@@ -10,7 +10,7 @@ The official User Guide can be found [here][1] (PDF).
 Requirements and Limitations
 ============================
 
-This tool uses the `hidraw` driver and needs at least *Linux 2.6.30* in order
+This tool uses the `hidraw` driver and needs at least *Linux 2.6.39* in order
 to work. It can only write settings, not read them, so you have to set
 everything at the same same.
 
@@ -85,7 +85,7 @@ Just customize `/etc/default/tpkbdctl`.
 Others
 ------
 
-To have your perferred configuration set automatically, a udev rule can be
+To have your preferred configuration set automatically, a udev rule can be
 used. Place the following code in  `/etc/udev/rules.d/10-tpkbdctl.rules`.
 
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
