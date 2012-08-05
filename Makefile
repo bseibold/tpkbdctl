@@ -1,7 +1,9 @@
 
 DESTDIR?=/
 
-VERSION=$(shell git describe --tags --always)
+VERSION=$(shell git describe --tags --always 2>/dev/null)
+VERSION?=0.1
+
 CFLAGS+=-std=c99 -Wall -Werror -DVERSION=$(VERSION)
 
 

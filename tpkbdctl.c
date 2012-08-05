@@ -1,5 +1,5 @@
 /* 
- * (c) 2012 Bernhard Seibold <bernhard.seibold@googlemail.com>
+ * (c) 2012 Bernhard Seibold <bernhard.seibold@gmail.com>
  * License: GPLv2
  */
 #include <stdio.h>
