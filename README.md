@@ -49,7 +49,7 @@ By enabling this, you can not only click by pressing down the trackpoint, but
 also drag. This depends on *Press to select* being enabled.
 
 ### Press right
-This changes to *Press to select* feature to generate right-button clicks
+This changes the *Press to select* feature to generate right-button clicks
 instead of left-button ones.
 
 ### Release to select
@@ -90,7 +90,7 @@ used. Place the following code in  `/etc/udev/rules.d/10-tpkbdctl.rules`.
 
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
 
-Customize this according to you needs and save it as `/etc/udev/tpkbdctl_runner`.
+Customize this according to your needs and save it as `/etc/udev/tpkbdctl_runner`.
 Don't forget to make it executable.
 
     #!/bin/sh
