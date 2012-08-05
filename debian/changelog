@@ -1,3 +1,9 @@
+tpkbdctl (0.1) unstable; urgency=low
+
+  * Basically a version bump, no new functionality
+
+ -- Bernhard Seibold <bernhard.seibold@gmail.com>  Sun, 05 Oct 2012 16:45:14 +0200
+
 tpkbdctl (0.01-1) unstable; urgency=low
 
   * Initial release
