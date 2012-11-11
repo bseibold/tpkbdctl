@@ -101,7 +101,7 @@ See also
 ========
 
 There's a [kernel patch][2] that provides more functionality than this tool.
-Be aware though, the unstable branch will be rebased from time to time.
+It has been merged in Linux 3.6.
 
 [2]: https://github.com/bseibold/linux/tree/tpkbd-unstable (Kernel patch)
 
