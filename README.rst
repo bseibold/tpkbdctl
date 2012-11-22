@@ -106,4 +106,4 @@ License
 This tool is licensed under the GNU GPL v2.
 
 .. _UserGuide: http://download.lenovo.com/ibmdl/pub/pc/pccbbs/options_iso/45k1918_ug.pdf
-.. _kernel patch: https://github.com/bseibold/linux/tree/tpkbd-unstable
+.. _kernel patch: https://github.com/bseibold/linux/branches
