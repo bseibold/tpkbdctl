@@ -1,0 +1,9 @@
+build
+dist
+*.egg-info
+
+## ignores for debian checkinstall
+backup*.tgz
+description-pak
+doc-pak
+*.deb

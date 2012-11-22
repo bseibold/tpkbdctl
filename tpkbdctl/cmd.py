@@ -13,7 +13,7 @@ def parse_choice(val):
     return False
 
 
-def tpkbdctl(argv):
+def main():
     p = OptionParser(usage='usage: %prog [options]')
     p.add_option('-l', '--list', action='store_true', dest='list',
                 help='List all available devices')
@@ -33,7 +33,7 @@ def tpkbdctl(argv):
                  help='Enable release-to-select? (y/n)')
 
 
-    (options, args) = p.parse_args(argv)
+    (options, args) = p.parse_args(sys.argv)
 
 
     tpkbdctl = TpkbdCtl()
@@ -85,6 +85,3 @@ def tpkbdctl(argv):
         v = parse_choice(options.release_to_select)
         for d in tpkbdctl.devices: d.release_to_select = v
 
-
-if __name__ == '__main__':
-    tpkbdctl(sys.argv)
