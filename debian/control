@@ -1,0 +1,15 @@
+Source: tpkbdctl
+Section: utils
+Priority: extra
+Maintainer: unknown <unknown@unknown>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: https://github.com/bseibold/tpkbdctl
+Vcs-Git: git://github.com/bseibold/tpkbdctl.git
+Vcs-Browser: https://github.com/bseibold/tpkbdctl
+
+Package: tpkbdctl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Thinkpad USB Keyboard Control Tool
+ A tool that can be used to control features of the Lenovo ThinkPad USB Keyboard with TrackPoint.

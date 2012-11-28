@@ -1,0 +1,37 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/pkg-info.mk
+PYTHON2:=$(shell pyversions -r)
+PYTHON3:=$(shell py3versions -r)
+py3sdo=set -e; $(foreach py, $(PYTHON3), $(py) $(1);)
+pyalldo=set -e; $(foreach py, $(PYTHON2) $(PYTHON3), $(py) $(1);)
+
+%:
+	dh $@ --with python2,python3
+
+#ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+#override_dh_auto_test:
+#	$(call pyalldo, -m unittest discover -vv test/)
+#endif
+
+override_dh_auto_build:
+	dh_auto_build
+	$(call py3sdo, setup.py build)
+
+override_dh_auto_install:
+	dh_auto_install
+	$(call py3sdo, setup.py install --root=$(CURDIR)/debian/$(DEB_SOURCE) --install-layout=deb)
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf build
+	rm -rf *.egg-info
