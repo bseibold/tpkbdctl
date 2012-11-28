@@ -1,6 +1,7 @@
 build
 dist
 *.egg-info
+*.pyc
 
 ## ignores for debian checkinstall
 backup*.tgz
