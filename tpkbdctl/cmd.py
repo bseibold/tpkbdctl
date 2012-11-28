@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # vim:set sw=4 ts=4 et:
 
+from __future__ import print_function
+
 import sys
 from optparse import OptionParser
 from tpkbdctl import TpkbdCtl
@@ -52,7 +54,7 @@ def main():
 
     if options.list:
         for d in tpkbdctl.devices:
-            print str(d)
+            print(str(d))
         exit(0)
 
     if options.sensitivity != None:
@@ -60,14 +62,14 @@ def main():
         if 0 < s <= 255:
             for d in tpkbdctl.devices: d.sensitivity = s
         else:
-            print >>sys.stderr, 'Sensitivity value out of range, ignored'
+            print('Sensitivity value out of range, ignored', file=sys.stderr)
 
     if options.press_speed != None:
         s = options.press_speed
         if 0 < s <= 255:
             for d in tpkbdctl.devices: d.press_speed = s
         else:
-            print >>sys.stderr, 'Press-speed value out of range, ignored'
+            print('Press-speed value out of range, ignored', file=sys.stderr)
 
     if options.press_to_select:
         v = parse_choice(options.press_to_select)
