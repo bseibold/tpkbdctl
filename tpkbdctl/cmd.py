@@ -5,6 +5,7 @@
 from __future__ import print_function
 
 import sys
+import re
 from optparse import OptionParser
 from tpkbdctl import TpkbdCtl
 
