@@ -5,7 +5,7 @@
 from setuptools import setup
 
 setup(name='tpkbdctl',
-      version='0.2',
+      version='0.2.1',
       description='Thinkpad Keyboard Control Tool',
       long_description=open('README.rst').read(),
       url='http://github.com/bseibold/tpkbdctl',
