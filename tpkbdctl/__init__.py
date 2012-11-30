@@ -162,9 +162,7 @@ class TpkbdCtl(object):
         self.devices = []
         devs = listdir(self.__hid_path__)
         for dev in devs:
-            d = self.probe_device(dev)
-            if d != None:
-                self.devices.append(d)
+             self.probe_device(dev)
 
 
     def _check_interface(self, dev):
@@ -185,26 +183,27 @@ class TpkbdCtl(object):
 
     def probe_device(self, dev):
         if not re.match(r'^....:17EF:6009\.....$', dev):
-            return None
+            return False
 
         hid_path = realpath(join_path(self.__hid_path__, dev))
         hidraw_path = join_path(hid_path, 'hidraw')
         if not isdir(hidraw_path):
-            return None
+            return False
 
         hidraw_name = listdir(hidraw_path)[0]
         if not isdir(join_path(hidraw_path, hidraw_name)):
-            return None
+            return False
 
         if not self._check_interface(hid_path):
-            return None
+            return False
 
         #print 'driver: %s' % basename(realpath(join_path(hid_path, 'driver/module')))
         if isfile(join_path(hid_path, 'sensitivity')):
-            return TpkbdDevice(hid_path)
+            self.devices.append(TpkbdDevice(hid_path))
         else:
             hidraw_dev = join_path(self.__dev_path__, hidraw_name)
-            return HidrawDevice(hidraw_dev)
+            self.devices.append(HidrawDevice(hidraw_dev))
+        return True
 
 
     def __repr__(self):
