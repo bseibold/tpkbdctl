@@ -1,3 +1,9 @@
+tpkbdctl (0.2.2-1) unstable; urgency=low
+
+  * Push version because README.rst was missing on PyPi
+
+ -- unknown <unknown@unknown>  Sat, 29 Dez 2012 11:51:23 +0100
+
 tpkbdctl (0.2.1-1) unstable; urgency=low
 
   * Small bugfixes
