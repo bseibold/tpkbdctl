@@ -7,7 +7,7 @@ from __future__ import print_function
 import sys
 import re
 from optparse import OptionParser
-from tpkbdctl import TpkbdCtl
+from tpkbdctl import TpkbdCtl, HidrawDevice
 
 def parse_choice(val):
     v = val[0].lower()
@@ -52,10 +52,15 @@ def main():
             if m:
                 tpkbdctl.probe_device('%04X:17EF:6009.%04X' % (int(m.group(1), 16), int(m.group(2), 16)))
                 continue
-            
+
             m = re.match('hidraw:(.*)', d)
             if m:
-                tpkbdctl.devices.append(HidrawDevice(str(m.group(1)))) # no validation on purpose
+                tpkbdctl.devices.append(HidrawDevice('/dev/hidraw{0:s}'.format(m.group(1)))) # no validation on purpose
+                continue
+
+            m = re.match('/dev/hidraw([0-9]+)', d)
+            if m:
+                tpkbdctl.devices.append(HidrawDevice('/dev/hidraw{0:s}'.format(m.group(1)))) # no validation on purpose
                 continue
 
     else:
