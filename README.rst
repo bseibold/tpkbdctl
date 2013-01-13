@@ -115,6 +115,22 @@ The `kernel patch`_ provides additional functionality. It allows you to control 
 LEDs in the mute buttons and makes the microphone mute button usable. It was
 merged in Linux 3.6.
 
+Miscellaneous
+=============
+
+It's very convenient to be able to scroll by holding the middle button and moving the TrackPoint up and down.
+To enable this, save this as ``/etc/X11/xorg.conf.d/10-trackpoint.conf``:
+
+::
+
+    Section "InputClass"
+        Identifier "Trackpoint Wheel Emulation"
+        MatchProduct "ThinkPad USB Keyboard with TrackPoint"
+        MatchDevicePath "/dev/input/event*"
+        Option "EmulateWheel" "true"
+        Option "EmulateWheelButton" "2"
+    EndSection
+
 License
 =======
 
