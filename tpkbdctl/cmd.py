@@ -43,7 +43,7 @@ def main():
 
     if options.device:
         for d in options.device:
-            m = re.match('/devices/.*/([0-9a-fA-F]+):17EF:6009\.([0-9a-fA-F]+)$', d)
+            m = re.match('/devices/.*/([0-9a-fA-F]{4}):17EF:6009\.([0-9a-fA-F]{4})', d)
             if m:
                 tpkbdctl.probe_device('%04X:17EF:6009.%04X' % (int(m.group(1), 16), int(m.group(2), 16)))
                 continue

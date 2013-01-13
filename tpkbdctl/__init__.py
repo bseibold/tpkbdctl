@@ -173,9 +173,11 @@ class TpkbdCtl(object):
 
         
         intclass = open(join_path(dev, 'bInterfaceClass')).readline()
-        if not re.match(r'^03$', open(join_path(dev, 'bInterfaceClass')).readline()):
+        if not re.match(r'^03\s*$', intclass):
             return False
-        if not re.match(r'^01$', open(join_path(dev, 'bInterfaceNumber')).readline()):
+
+        intnum = open(join_path(dev, 'bInterfaceNumber')).readline()
+        if not re.match(r'^01\s*$', intnum):
             return False
 
         return True
@@ -197,7 +199,6 @@ class TpkbdCtl(object):
         if not self._check_interface(hid_path):
             return False
 
-        #print 'driver: %s' % basename(realpath(join_path(hid_path, 'driver/module')))
         if isfile(join_path(hid_path, 'sensitivity')):
             self.devices.append(TpkbdDevice(hid_path))
         else:
