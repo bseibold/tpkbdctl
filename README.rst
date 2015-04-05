@@ -97,7 +97,7 @@ used. Place the following code in  ``/etc/udev/rules.d/10-tpkbdctl.rules``.
 
 ::
 
-    SUBSYSTEM=="hid", DRIVER=="lenovo_tpkbd", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
+    SUBSYSTEM=="hid", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6009", ACTION=="add", RUN+="/etc/udev/tpkbdctl_runner"
 
 Customize this according to your needs and save it as `/etc/udev/tpkbdctl_runner`.
 Don't forget to make it executable by running ``chmod 755 /etc/udev/tpkbdctl_runner``.
