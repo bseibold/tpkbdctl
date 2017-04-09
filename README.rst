@@ -5,6 +5,12 @@ It’s a tool that can be used to control features of the “Lenovo ThinkPad
 USB Keyboard with TrackPoint”. The official User Guide can be found
 here: `UserGuide`_ (PDF).
 
+Supported Hardware
+==================
+
+Only the original "Lenovo ThinkPad USB Keyboard with TrackPoint" is supported,
+the newer "Compact" variants are unsupported.
+
 Requirements and Limitations
 ============================
 
